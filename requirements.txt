@@ -1,0 +1,43 @@
+# =============================================================
+# EdgeChat — Python Dependencies
+# Install with: pip install -r requirements.txt
+# =============================================================
+
+# ── PDF Extraction ───────────────────────────────────────────
+pymupdf==1.24.11               # Imported as `fitz`; fast, accurate PDF text extraction
+
+# ── Chunking ─────────────────────────────────────────────────
+langchain-text-splitters==0.3.3 # Token-aware text splitter (no heavy LangChain core)
+tiktoken==0.7.0                 # Fast BPE tokenizer used by the splitter
+
+# ── Embeddings ───────────────────────────────────────────────
+sentence-transformers==3.3.1    # Loads BAAI/bge-small-en-v1.5
+# PyTorch (CPU-only build — smaller download, works without NVIDIA drivers)
+torch==2.4.1                    # Required by sentence-transformers
+transformers==4.46.3            # HuggingFace model hub + tokenizers
+huggingface-hub==0.26.2         # Model downloading + caching
+
+# ── Vector Search ────────────────────────────────────────────
+faiss-cpu==1.9.0               # Facebook AI Similarity Search (CPU build)
+
+# ── Local LLM Runtime ────────────────────────────────────────
+ollama==0.4.4                   # Python client for Ollama REST API
+
+# ── Config ───────────────────────────────────────────────────
+pyyaml==6.0.2                   # Load config.yaml
+
+# ── UI ───────────────────────────────────────────────────────
+streamlit==1.40.1               # Web UI
+
+# ── Evaluation & Reporting ───────────────────────────────────
+pandas==2.2.3                   # Data manipulation for eval scripts
+openpyxl==3.1.5                 # Write Excel reports
+psutil==6.1.0                   # Measure RAM/CPU usage during benchmarks
+
+# ── Testing ──────────────────────────────────────────────────
+pytest==8.3.3                   # Test runner
+pytest-timeout==2.3.1           # Prevent hanging tests
+
+# ── Utilities ────────────────────────────────────────────────
+python-dotenv==1.0.1            # Load .env for API keys (eval baseline only)
+tqdm==4.67.0                    # Progress bars during indexing

@@ -1,0 +1,66 @@
+# ─────────────────────────────────────────────────────────────
+#  EdgeChat .gitignore
+# ─────────────────────────────────────────────────────────────
+
+# Python virtual environment
+venv/
+.venv/
+env/
+
+# Python bytecode & caches
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+
+# Pytest
+.pytest_cache/
+
+# ─────────────────────────────────────────────────────────────
+#  Large binary / generated files (NOT for Git)
+# ─────────────────────────────────────────────────────────────
+
+# FAISS index & chunk metadata  → rebuild: python -m src.indexer --rebuild
+data/index/faiss.index
+data/index/chunks.json
+
+# Raw COEP PDFs (institutional; ~300 MB total)
+data/docs/
+
+# HuggingFace / GGUF model weights
+*.bin
+*.safetensors
+*.gguf
+models/
+model_cache/
+
+# ─────────────────────────────────────────────────────────────
+#  Evaluation outputs (reproducible; keep xlsx & chart PNGs)
+# ─────────────────────────────────────────────────────────────
+eval/results/*.csv
+eval/results/*.json
+
+# ─────────────────────────────────────────────────────────────
+#  Secrets & environment
+# ─────────────────────────────────────────────────────────────
+.env
+*.key
+*.pem
+secrets/
+
+# ─────────────────────────────────────────────────────────────
+#  OS / editor artefacts
+# ─────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+*.code-workspace

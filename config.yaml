@@ -1,0 +1,57 @@
+# =============================================================
+# EdgeChat Configuration
+# All tunable values live here. Never hard-code these in code.
+# =============================================================
+
+# ── Paths ────────────────────────────────────────────────────
+paths:
+  docs_dir: "data/docs"          # Source PDFs go here
+  index_dir: "data/index"        # FAISS index + chunk metadata saved here
+  faiss_index: "data/index/faiss.index"
+  chunks_file: "data/index/chunks.json"
+
+# ── Embedding Model ──────────────────────────────────────────
+embedding:
+  model_name: "BAAI/bge-small-en-v1.5"
+  # BGE models need this prefix on QUERIES (not on chunks during indexing)
+  query_instruction: "Represent this sentence for searching relevant passages: "
+  normalize_vectors: true        # Required for cosine similarity with IndexFlatIP
+  batch_size: 32                 # How many chunks to embed at once
+
+# ── Chunking ─────────────────────────────────────────────────
+chunking:
+  chunk_size: 400                # Target tokens per chunk (300–500 recommended)
+  overlap: 75                    # Overlap tokens between consecutive chunks
+  min_chunk_chars: 100           # Discard chunks shorter than this (noise filter)
+
+# ── Retrieval ────────────────────────────────────────────────
+retrieval:
+  top_k: 4                       # Number of chunks to retrieve per question
+  similarity_threshold: 0.60     # Empirical threshold: out-of-domain <=0.56, relevant >=0.72
+  debug: false                   # Set true to print scores in terminal
+
+
+# ── Local LLM (Ollama) ───────────────────────────────────────
+llm:
+  provider: "ollama"
+  model: "llama3.2:3b"           # Pull with: ollama pull llama3.2:3b
+  temperature: 0.1               # Low temp = more factual, less creative
+  num_ctx: 4096                  # Context window (tokens). Must fit k chunks + answer.
+  seed: 42                       # Fixed seed for reproducibility
+
+# ── Generation ───────────────────────────────────────────────
+generation:
+  not_found_message: "I could not find this in the provided documents."
+  max_answer_tokens: 512
+
+# ── Evaluation ───────────────────────────────────────────────
+eval:
+  questions_file: "eval/questions.json"
+  results_dir: "eval/results"
+
+# ── Offline Mode ─────────────────────────────────────────────
+# Set HF_HUB_OFFLINE=1 in your shell before running to prevent
+# any Hugging Face network calls after the first download.
+# Example (PowerShell): $env:HF_HUB_OFFLINE = "1"
+offline:
+  hf_hub_offline: false          # Set true in production/offline runs
