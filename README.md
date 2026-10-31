@@ -29,24 +29,6 @@ It combines:
 
 ---
 
-## Demo
-
-<div align="center">
-  <img src="docs/similarity_score_ranges.png" alt="Similarity Score Ranges" width="700"/>
-  <br/>
-  <em>Figure 1 — BGE cosine similarity scores: noise queries cluster at 0.45–0.56, relevant COEP queries at 0.70–0.88. The τ = 0.60 threshold provides a 0.125 zero-overlap safety margin.</em>
-</div>
-
-<br/>
-
-<div align="center">
-  <img src="docs/local_vs_cloud_comparison.png" alt="Local vs Cloud Comparison" width="700"/>
-  <br/>
-  <em>Figure 2 — EdgeChat Local (Llama 3.2 3B Q4_K_M) vs. Cloud Baseline (Gemini 1.5 Flash) on a 35-question benchmark. Retrieval metrics are identical because both systems share the same FAISS index.</em>
-</div>
-
----
-
 ## System Architecture
 
 ```text
@@ -224,6 +206,22 @@ Evaluated across **35 verified questions** (27 in-domain · 8 unanswerable out-o
 | Academic Regulations | 50% | 100% |
 | Examination Rules | 50% | 83.3% |
 | Out-of-Domain Refusal | — | 100% (8/8) |
+
+---
+
+<div align="center">
+  <img src="docs/similarity_score_ranges.png" alt="Similarity Score Ranges" width="700"/>
+  <br/>
+  <em>Figure 1 — BGE cosine similarity scores: noise queries cluster at 0.45–0.56, relevant COEP queries at 0.70–0.88. The τ = 0.60 threshold provides a 0.125 zero-overlap safety margin.</em>
+</div>
+
+<br/>
+
+<div align="center">
+  <img src="docs/local_vs_cloud_comparison.png" alt="Local vs Cloud Comparison" width="700"/>
+  <br/>
+  <em>Figure 2 — EdgeChat Local (Llama 3.2 3B Q4_K_M) vs. Cloud Baseline (Gemini 1.5 Flash) on a 35-question benchmark. Retrieval metrics are identical because both systems share the same FAISS index.</em>
+</div>
 
 ---
 
